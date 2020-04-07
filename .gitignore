@@ -1,0 +1,10 @@
+/coverage
+/es
+/lib
+/dist
+/node_modules
+/umd
+/docs/website/node_modules
+/docs/website/build
+npm-debug.log*
+.history
