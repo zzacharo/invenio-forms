@@ -2,8 +2,6 @@
 
 # dependencies
 /node_modules
-/.pnp
-.pnp.js
 
 # testing
 /coverage
@@ -13,7 +11,11 @@
 
 # misc
 .DS_Store
+
+# https://facebook.github.io/create-react-app/docs/adding-custom-environment-variables#what-other-env-files-can-be-used
+.env
 .env.local
+.env.production
 .env.development.local
 .env.test.local
 .env.production.local
