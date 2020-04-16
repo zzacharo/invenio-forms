@@ -4,29 +4,29 @@ import { getIn, FieldArray } from 'formik';
 import { Form, Button, Icon } from 'semantic-ui-react';
 
 export class ArrayField extends Component {
-  renderFormField = props => {
+  renderFormField = formikBag => {
     const {
       form: { values },
       ...arrayHelpers
-    } = props;
+    } = formikBag;
     const {
-      fieldPath,
+      // ArrayField specific props
       addButtonLabel,
       defaultNewValue,
+      fieldPath,
       label,
       renderArrayItem,
+      // Other semantic-ui or HTML props
       ...uiProps
     } = this.props;
+
     return (
       <Form.Field {...uiProps}>
-        <label>{label}</label>
+        <label htmlFor={fieldPath}>{label}</label>
         {getIn(values, fieldPath, []).map((value, index) => {
-          const arrayPath = fieldPath;
-          const indexPath = index;
-          const key = `${arrayPath}.${indexPath}`;
           return (
-            <div key={key}>
-              {renderArrayItem({ arrayPath, indexPath, key, ...props })}
+            <div key={`${fieldPath}.${index}`}>
+              {renderArrayItem({ fieldPath, index, ...formikBag })}
             </div>
           );
         })}
@@ -54,16 +54,16 @@ export class ArrayField extends Component {
 }
 
 ArrayField.propTypes = {
-  fieldPath: PropTypes.string.isRequired,
-  label: PropTypes.string,
   addButtonLabel: PropTypes.string,
   defaultNewValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
     .isRequired,
+  fieldPath: PropTypes.string.isRequired,
+  label: PropTypes.string,
   renderArrayItem: PropTypes.func.isRequired,
 };
 
 ArrayField.defaultProps = {
-  label: '',
   addButtonLabel: 'Add new row',
+  label: '',
   placeholder: '',
 };

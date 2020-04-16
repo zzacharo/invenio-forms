@@ -31,8 +31,15 @@ export class InvenioForm extends Component {
                 disabled={isSubmitting}
                 name="submit"
                 type="submit"
-                content="Submit"
+                content="Publish"
               />
+              <Button
+                disabled={isSubmitting}
+                name="submit2"
+                type="submit"
+                content="Save"
+              />
+
             </Form>
           )}
         </Formik>
